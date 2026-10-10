@@ -1,0 +1,251 @@
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    line-height: 1.6;
+    padding-bottom: 2rem;
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}
+.mt-4 {
+    margin-top: 1rem;
+}
+
+/* Header */
+.app-header {
+    background-color: #4caf50;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.app-header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+#btn-back {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* Views */
+.view {
+    display: none;
+    padding: 1rem;
+    animation: fadeIn 0.3s ease-in-out;
+}
+.view.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+h2 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: #2c3e50;
+}
+
+/* Lists container */
+.list-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+/* List Items */
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+.list-item:last-child {
+    border-bottom: none;
+}
+.list-item:active {
+    background-color: #f9f9f9;
+}
+.item-title {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+.item-subtitle {
+    font-size: 0.85rem;
+    color: #777;
+}
+.item-amount {
+    background: #e0e0e0;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-weight: bold;
+}
+.item-check {
+    margin-right: 10px;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+.checked .item-title {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+/* Buttons */
+.action-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: white;
+    border: 1px dashed #4caf50;
+    color: #4caf50;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+.action-btn.primary {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+}
+.action-btn.secondary {
+    background-color: #9e9e9e;
+    border: none;
+    color: white;
+}
+.delete-btn {
+    background: none;
+    border: none;
+    color: #f44336;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.delete-all-btn {
+    background-color: #f44336;
+    border: none;
+    color: white;
+    margin-top: 2rem;
+}
+
+/* Product Search */
+#product-search-input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.product-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.product-card img, .product-card .emoji {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    font-size: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.product-card .name {
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: block;
+}
+.product-card .brand {
+    font-size: 0.7rem;
+    color: #888;
+    display: block;
+}
+
+/* Custom Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-content {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.modal-content h3 {
+    margin-bottom: 0.5rem;
+}
+.modal-content p {
+    color: #555;
+    margin-bottom: 1rem;
+}
+#modal-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+}
+.modal-buttons .action-btn {
+    margin-bottom: 0;
+    padding: 0.8rem;
+}

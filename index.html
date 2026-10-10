@@ -1,31 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<script>src="./assets/js/script.js"</script>
-	<link rel="stylesheet" href="./assets/css/stylesheet.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Shoppie PWA</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4caf50">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/css/stylesheet.css">
 </head>
 <body>
-	<script> if (IsLookingAt == "Home") {
-		insert ""
-	}</script>
+    <header class="app-header">
+        <h1 id="header-title">Shoppie</h1>
+        <button id="btn-back" class="hidden">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Back
+        </button>
+    </header>
 
-	<script> if (IsLookingAt == "ChildLists") { 
-		<p>ChildLists</p>
-	}</script>
-	
-	<script> if (IsLookingAt == "ChildList") { 
-<p>ChildList</p>
-	}</script>
-	
-	<script> if (IsLookingAt == "EditProduct") {
-<p>EditProduct</p>
-	 }</script>
+    <main id="app-container">
+        <!-- View: Dashboard (Home) -->
+        <section id="view-dashboard" class="view active">
+            <h2>Your Shopping Lists</h2>
+            <div id="dashboard-lists" class="list-container">
+                <!-- Dynamically populated lists go here -->
+            </div>
+            
+            <button id="btn-create-list" class="action-btn">➕ New List</button>
+            <button id="btn-generate-master" class="action-btn primary mt-4">Start Shopping</button>
+            
+            <button id="btn-remove-all" class="action-btn delete-all-btn mt-4">Delete All Lists</button>
+        </section>
 
-	<script> if (IsLookingAt == "MasterList") { 
-<p>MasterList</p>
-	}</script>
+        <!-- View: Child List Editor -->
+        <section id="view-child-list" class="view hidden">
+            <h2 id="child-list-title">List Name</h2>
+            <div id="child-list-items" class="list-container">
+                <!-- Items go here -->
+            </div>
+            <button id="btn-add-product" class="action-btn">➕ Add Product</button>
+        </section>
+
+        <!-- View: Product Search -->
+        <section id="view-product-search" class="view hidden">
+            <h2>Search Product</h2>
+            <input type="text" id="product-search-input" placeholder="e.g. Milk, Bread, Oreo...">
+            
+            <!-- Loader -->
+            <div id="search-loader" class="hidden">Searching online...</div>
+
+            <!-- Generic/Fast Catalog Results -->
+            <div id="generic-catalog-results" class="product-grid">
+                <!-- Generic items populated here -->
+            </div>
+            
+            <!-- API Branded Results -->
+            <div id="api-catalog-results" class="product-grid mt-4">
+                <!-- API items populated here -->
+            </div>
+            
+            <button id="btn-add-custom" class="action-btn secondary mt-4 hidden">Add Custom Product</button>
+        </section>
+
+        <!-- View: Combined Shopping List -->
+        <section id="view-master-list" class="view hidden">
+            <h2>Combined Shopping List</h2>
+            <div id="master-list-items" class="list-container">
+                <!-- Consolidated items go here -->
+            </div>
+            <button id="btn-finish-shopping" class="action-btn primary mt-4">✅ Finish Shopping</button>
+        </section>
+    </main>
+
+    <!-- Custom Modal -->
+    <div id="custom-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3 id="modal-title">Title</h3>
+            <p id="modal-message">Message</p>
+            <input type="text" id="modal-input" class="hidden" placeholder="Enter text...">
+            <div class="modal-buttons">
+                <button id="modal-btn-cancel" class="action-btn secondary">Cancel</button>
+                <button id="modal-btn-confirm" class="action-btn primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts (ES6 Modules) -->
+    <script type="module" src="./assets/js/app.js"></script>
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').then(registration => {
+                    console.log('SW registered: ', registration);
+                }).catch(registrationError => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
+    </script>
 </body>
 </html>
